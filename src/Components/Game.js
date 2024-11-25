@@ -1,13 +1,35 @@
 import { useState } from "react";
-
-
+import styles from "../styles/Game.module.css";
 
 const CHOICES = [
-    { name: "rock", emoji: "✊" },
-    { name: "paper", emoji: "✋" },
-    { name: "scissors", emoji: "✌️" },
-  ];
+  { name: "rock", emoji: "✊" },
+  { name: "paper", emoji: "✋" },
+  { name: "scissors", emoji: "✌️" },
+];
 
+// style objects
+const choiceStyles = {
+  display: "flex",
+  alignItems: "center",
+  marginBottom: "40px",
+};
+
+const emojiStyles = {
+  fontSize: 54,
+  marginRight: 20,
+};
+
+const nameStyles = {
+  margin: 0,
+  fontSize: 24,
+  color: "white",
+};
+
+const resultStyles = {
+  marginTop: 40,
+  fontSize: 48,
+  color: "white",
+};
 
 // game function
 function Game() {
@@ -15,19 +37,21 @@ function Game() {
   const [computerChoice, setComputerChoice] = useState(null);
   const [results, setResults] = useState(null);
 
-  //   handlers function
+  //   handlers function logic
   function handlePlayerChoice(choice) {
-    const computerChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
-    setComputerChoice(choice);
-    setComputerChoice(computerChoice);
+    const randomComputerChoice =
+      CHOICES[Math.floor(Math.random() * CHOICES.length)];
+    console.log(randomComputerChoice);
+    setPlayerChoice(choice); //set player choice
+    setComputerChoice(randomComputerChoice); // set computer choice
 
     // check who wins
-    if (choice.name === computerChoice.name) {
+    if (choice.name === randomComputerChoice.name) {
       setResults("Tie Game!");
     } else if (
-      (choice.name === "rock" && computerChoice.name === "scissors") ||
-      (choice.name === "paper" && computerChoice === "rock") ||
-      (choice.name === "scissors" && computerChoice.name === "paper")
+      (choice.name === "rock" && randomComputerChoice.name === "scissors") ||
+      (choice.name === "paper" && randomComputerChoice.name === "rock") ||
+      (choice.name === "scissors" && randomComputerChoice.name === "paper")
     ) {
       setResults("You Win the Game!");
     } else {
@@ -43,13 +67,13 @@ function Game() {
   }
 
   return (
-    <div>
-      <h1>Rock Paper Scissors Game</h1>
-      <div>
+    <div className={styles.container}>
+      <h1 style={{ fontSize: 48, marginTop: 0 }}>Rock Paper Scissors Game</h1>
+      <div className={styles.choices}>
         {CHOICES.map((choice) => (
           <button
             key={choice.name}
-            onClick={handlePlayerChoice(choice)}
+            onClick={() => handlePlayerChoice(choice)}
             aria-label={choice.name}
           >
             {choice.emoji}
@@ -57,17 +81,19 @@ function Game() {
         ))}
       </div>
       {playerChoice && computerChoice && (
-        <div>
-          <div>
-            <span>{playerChoice.emoji}</span>
-            <p>You choose {playerChoice.name}</p>
+        <div className={styles.results}>
+          <div style={choiceStyles}>
+            <span style={emojiStyles}>{playerChoice.emoji}</span>
+            <p style={nameStyles}>You choose {playerChoice.name}</p>
           </div>
-          <div>
-            <span>{computerChoice.emoji}</span>
-            <p>The computer choose {playerChoice.name}</p>
+          <div style={choiceStyles}>
+            <span style={emojiStyles}>{computerChoice.emoji}</span>
+            <p style={nameStyles}>The computer choose {computerChoice.name}</p>
           </div>
-          <h2>{results}</h2>
-          <button onClick={resetGame}>Play again</button>
+          <h2 style={resultStyles}>{results}</h2>
+          <button className={styles.button} onClick={resetGame}>
+            Play again
+          </button>
         </div>
       )}
     </div>
