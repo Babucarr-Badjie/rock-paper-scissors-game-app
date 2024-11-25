@@ -84,11 +84,11 @@ function Game() {
         <div className={styles.results}>
           <div style={choiceStyles}>
             <span style={emojiStyles}>{playerChoice.emoji}</span>
-            <p style={nameStyles}>You choose {playerChoice.name}</p>
+            <p style={nameStyles}>You chooses {playerChoice.name}</p>
           </div>
           <div style={choiceStyles}>
             <span style={emojiStyles}>{computerChoice.emoji}</span>
-            <p style={nameStyles}>The computer choose {computerChoice.name}</p>
+            <p style={nameStyles}>The computer chooses {computerChoice.name}</p>
           </div>
           <h2 style={resultStyles}>{results}</h2>
           <button className={styles.button} onClick={resetGame}>
