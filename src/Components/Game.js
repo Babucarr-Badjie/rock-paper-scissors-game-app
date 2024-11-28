@@ -15,19 +15,19 @@ const choiceStyles = {
 };
 
 const emojiStyles = {
-  fontSize: 54,
+  fontSize: 32,
   marginRight: 20,
 };
 
 const nameStyles = {
   margin: 0,
-  fontSize: 24,
+  fontSize: 20,
   color: "white",
 };
 
 const resultStyles = {
   marginTop: 40,
-  fontSize: 48,
+  fontSize: 20,
   color: "white",
 };
 
@@ -68,10 +68,11 @@ function Game() {
 
   return (
     <div className={styles.container}>
-      <h1 style={{ fontSize: 48, marginTop: 0 }}>Rock Paper Scissors Game</h1>
+      <h1 style={{ fontSize: 40, marginTop: 0 }}>Rock Paper Scissors Game</h1>
       <div className={styles.choices}>
         {CHOICES.map((choice) => (
           <button
+            className={styles.rockPaperScissorsButtons}
             key={choice.name}
             onClick={() => handlePlayerChoice(choice)}
             aria-label={choice.name}
