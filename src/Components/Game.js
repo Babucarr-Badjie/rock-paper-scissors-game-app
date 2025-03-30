@@ -85,7 +85,7 @@ function Game() {
         <div className={styles.results}>
           <div style={choiceStyles}>
             <span style={emojiStyles}>{playerChoice.emoji}</span>
-            <p style={nameStyles}>You chooses {playerChoice.name}</p>
+            <p style={nameStyles}>You choose {playerChoice.name}</p>
           </div>
           <div style={choiceStyles}>
             <span style={emojiStyles}>{computerChoice.emoji}</span>
